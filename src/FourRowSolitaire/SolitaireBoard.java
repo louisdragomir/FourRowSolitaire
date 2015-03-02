@@ -1700,14 +1700,7 @@ public class SolitaireBoard extends JFrame
                     sourceList.add(source);
                     numCards.add(temp.length());
 
-                    if(temp.length() > 1)
-                    {
-                        singleCardSelected = false;
-                    }
-                    else
-                    {
-                        singleCardSelected = true;
-                    }
+                    singleCardSelected = temp.length() <= 1;
                 }
                 else
                 {
@@ -1818,10 +1811,14 @@ public class SolitaireBoard extends JFrame
                 recordGame(SolitaireBoard.GAME_SAVED);
                 System.exit(0);
             }
-            else //if(save == JOptionPane.NO_OPTION)
+            else if(save == JOptionPane.NO_OPTION)
             {
                 recordGame(SolitaireBoard.GAME_LOST);
                 System.exit(0);
+            }
+            else
+            {
+            	
             }
         }
     }

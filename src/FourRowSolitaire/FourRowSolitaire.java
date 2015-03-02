@@ -20,9 +20,11 @@
 package FourRowSolitaire;
 
 import java.awt.Desktop;
+import java.awt.HeadlessException;
 import java.awt.event.*;
 import java.io.*;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.LinkedList;
 import javax.swing.*;

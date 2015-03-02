@@ -104,7 +104,7 @@ public class CardStack extends JLayeredPane
             return null;
         }
 
-	return cards.lastElement();
+	return cards.get(cards.size()-1);
     }
 
     public boolean isEmpty()
@@ -169,6 +169,36 @@ public class CardStack extends JLayeredPane
         
         return null;
     }
+    
+    public Object[] getCardAtLocationPreview(Point p)
+	{
+		if(cards.isEmpty())
+		{
+			return null;
+		}
+
+		int y = (int)p.getY();
+
+		int index;
+
+		if(y > 25 * (cards.size() - 1))
+		{
+			index = cards.size() - 1;
+		}
+		else
+		{
+			index = y / 25;
+		}
+
+		if(index < cards.size())
+		{
+			return new Object[]{cards.get(index),index};
+		}
+		else
+		{
+			return null;
+		}
+	}
 
     //Verifies that the card is a part of a valid stack
     private boolean isValidCard(int index)
@@ -198,7 +228,7 @@ public class CardStack extends JLayeredPane
 
         if(!isEmpty())
         {
-            if(y > 25 * (cards.size() - 1) + cards.lastElement().getBounds().getHeight())
+            if(y > 25 * (cards.size() - 1) + cards.get(cards.size()-1).getBounds().getHeight())
             {
                 return false;
             }
