@@ -56,10 +56,11 @@ public class FourRowSolitaire extends SolitaireBoard implements ActionListener
     private JMenuItem help = new JMenuItem("View Help");
     private JMenuItem about = new JMenuItem("About Game");
     private JMenuItem checkUpdate = new JMenuItem("Check for Updates");
+    private JMenuItem howToPlay = new JMenuItem("How to Play");
 
     public FourRowSolitaire()
     {
-        //checkForUpdate();
+        checkForUpdate();
 
         game.add(newGame);
         game.addSeparator();
@@ -83,10 +84,12 @@ public class FourRowSolitaire extends SolitaireBoard implements ActionListener
         helpMenu.add(help);
         helpMenu.add(about);
         helpMenu.add(checkUpdate);
+        helpMenu.add(howToPlay);
 
         help.addActionListener(this);
         about.addActionListener(this);
         checkUpdate.addActionListener(this);
+        howToPlay.addActionListener(this);
 
         menuBar.add(game);
         menuBar.add(helpMenu);
@@ -547,6 +550,14 @@ public class FourRowSolitaire extends SolitaireBoard implements ActionListener
             {
                 System.out.println(ex);
             }
+        }
+        else if(e.getSource() == howToPlay)
+        {
+        	JOptionPane.showMessageDialog(this, "How To Play.\n" +
+                    "\nThe goal of the game is to stack all of your cards sequentially in a pile from Ace to King on the corisponding Ace pile.\n" +
+                    "\nThis can be done by moving cards into alternating piles and by using the top four columns to hold kings.\n" +
+                    "\nMove a stack of cards or just one at a time.", 
+                    "How To Play", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }
