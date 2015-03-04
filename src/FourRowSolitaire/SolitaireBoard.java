@@ -1121,7 +1121,7 @@ public class SolitaireBoard extends JFrame
 
     public void setDifficulty(int difficulty)
     {
-        if(difficulty > 3 || difficulty < 1)
+        if(difficulty > 3 || difficulty < 0)
         {
             this.difficulty = 2;
         }
@@ -1138,7 +1138,7 @@ public class SolitaireBoard extends JFrame
 
     public void setNewDifficulty(int newDifficulty)
     {
-        if(newDifficulty > 3 || newDifficulty < 1)
+        if(newDifficulty > 3 || newDifficulty < 0)
         {
             this.newDifficulty = 2;
         }

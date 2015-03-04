@@ -46,8 +46,9 @@ public class ChangeOptions extends JDialog implements ActionListener
     private JCheckBox winSoundsCheck = new JCheckBox("Win Sounds");
     private int sounds = 0; //0 = off, 1 = on
 
-    private int difficulty = 2; //1 = easy, 2 = medium, 3 = hard
-
+    private int difficulty = 2; //0 = very easy, 1 = easy, 2 = medium, 3 = hard
+    
+    private JRadioButton veryEasy = new JRadioButton("Very Easy");
     private JRadioButton easy = new JRadioButton("Easy");
     private JRadioButton medium = new JRadioButton("Medium", true);
     private JRadioButton hard = new JRadioButton("Hard");
@@ -59,7 +60,7 @@ public class ChangeOptions extends JDialog implements ActionListener
     public ChangeOptions(JFrame parent, int currentDraw, int timer, int animation, int sounds, int difficulty)
     {
         setTitle("Options");
-        setSize(340,190);
+        setSize(340,250);
         setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
         setModalityType(JDialog.ModalityType.APPLICATION_MODAL);
         setLocationRelativeTo(parent);
@@ -139,12 +140,14 @@ public class ChangeOptions extends JDialog implements ActionListener
         buttonPanel.add(ok);
 
         ButtonGroup difficulties = new ButtonGroup();
+        difficulties.add(veryEasy);
         difficulties.add(easy);
         difficulties.add(medium);
         difficulties.add(hard);
 
         JPanel difficultyPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         difficultyPanel.setBorder(new TitledBorder("Difficulty"));
+        difficultyPanel.add(veryEasy);
         difficultyPanel.add(easy);
         difficultyPanel.add(medium);
         difficultyPanel.add(hard);
@@ -153,7 +156,11 @@ public class ChangeOptions extends JDialog implements ActionListener
         difficultyPanel.setMinimumSize(drawPanel.getMaximumSize());
         difficultyPanel.setPreferredSize(drawPanel.getMaximumSize());
 
-        if(difficulty == 1)
+        if(difficulty == 0)
+        {
+        	veryEasy.setSelected(true);
+        }
+        else if(difficulty == 1)
         {
             easy.setSelected(true);
         }
@@ -179,6 +186,7 @@ public class ChangeOptions extends JDialog implements ActionListener
         timerCheck.addActionListener(this);
         winAnimationCheck.addActionListener(this);
         winSoundsCheck.addActionListener(this);
+        veryEasy.addActionListener(this);
         easy.addActionListener(this);
         medium.addActionListener(this);
         hard.addActionListener(this);
@@ -282,6 +290,10 @@ public class ChangeOptions extends JDialog implements ActionListener
             {
                 sounds = 0;
             }
+        }
+        else if(e.getSource() == veryEasy)
+        {
+        	difficulty = 0;
         }
 
         else if(e.getSource() == easy)

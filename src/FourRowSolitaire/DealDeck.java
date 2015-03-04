@@ -38,11 +38,12 @@ public class DealDeck extends CardStack
     private int numTimesThroughDeck = 1;
 
     private int drawCount = 1;
-    private int difficulty = 2; //1, 2, or 3
+    private int difficulty = 2; //0, 1, 2, or 3
 
     private static final int DRAW_ONE_THROUGH_LIMIT = 2;
     private static final int DRAW_THREE_THROUGH_LIMIT = 3;
-
+    
+    private static final int VERYEASY_THROUGH_LIMIT = 100;
     private static final int EASY_THROUGH_LIMIT = 3; //Number of deck throughs for each difficulty
     private static final int MEDIUM_THROUGH_LIMIT = 2; //Three card draw adds 1 to each
     private static final int HARD_THROUGH_LIMIT = 1;
@@ -115,7 +116,11 @@ public class DealDeck extends CardStack
     {
         this.difficulty = difficulty;
 
-        if(difficulty == 1)
+        if(difficulty == 0)
+        {
+        	deckThroughLimit = VERYEASY_THROUGH_LIMIT;
+        }
+        else if(difficulty == 1)
         {
             deckThroughLimit = EASY_THROUGH_LIMIT;
         }
